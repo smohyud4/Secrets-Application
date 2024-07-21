@@ -14,3 +14,20 @@ body {
   color: #fff;
   background-color: #000;
 }
+
+#delete-check {
+  margin-right: 30px;
+}
+
+#delete-form {
+  display: inline;
+  scale: 0;
+}
+
+#delete-button {
+  display: block;
+}
+
+.secret-input {
+  display: block;
+}

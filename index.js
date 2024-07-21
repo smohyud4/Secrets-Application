@@ -66,7 +66,7 @@ app.get("/secrets", async (req, res) => {
     try {
       let userSecrets = [{description: "No secrets yet!"}];
       const userId  = parseInt(req.user.id);
-      const result = await db.query("SELECT description FROM titles WHERE user_id = $1", [userId]);
+      const result = await db.query("SELECT id, description FROM titles WHERE user_id = $1", [userId]);
       if (result.rowCount > 0) userSecrets = result.rows;
       //console.log(userSecrets);
 
@@ -159,6 +159,19 @@ app.post("/submit", async (req, res) => {
 
   try {
     await db.query("INSERT INTO titles (description, user_id) VALUES ($1, $2)", [secret, userId]);
+    res.redirect("/secrets");
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/delete", async (req, res) => {
+  console.log(req.body);
+  const {secretId} = req.body;
+
+  try {
+    await db.query("DELETE FROM titles WHERE id=$1", [secretId]);
     res.redirect("/secrets");
   }
   catch (err) {
