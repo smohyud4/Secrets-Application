@@ -64,7 +64,7 @@ app.get("/secrets", async (req, res) => {
   //console.log(req.user);
   if (req.isAuthenticated()) {
     try {
-      let userSecrets = [{description: "No secrets yet!"}];
+      let userSecrets = [{id: -1, description: "No secrets yet!"}];
       const userId  = parseInt(req.user.id);
       const result = await db.query("SELECT id, description FROM titles WHERE user_id = $1", [userId]);
       if (result.rowCount > 0) userSecrets = result.rows;
@@ -167,7 +167,6 @@ app.post("/submit", async (req, res) => {
 });
 
 app.post("/delete", async (req, res) => {
-  console.log(req.body);
   const {secretId} = req.body;
 
   try {
