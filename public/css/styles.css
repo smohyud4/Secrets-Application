@@ -26,6 +26,8 @@ body {
 
 #delete-button {
   display: block;
+  background: transparent;
+  border: transparent;
 }
 
 .secret-input {
