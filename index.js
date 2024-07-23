@@ -194,12 +194,6 @@ passport.use(
             return cb(err);
           } 
           else {
-            /*if (valid) {
-              return cb(null, user);
-            } else {
-              return cb(null, false);
-            }*/
-
             return valid ? cb(null, user) : cb(null, false);
           }
         });
